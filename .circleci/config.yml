@@ -37,6 +37,27 @@ jobs:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: pytest
+  
+  print_hello:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - run:
+        echo hello
+  print_world:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - run: 
+        echo world
+  print_env_variable:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - run:
+          name: "echo an env var that is part of our project"
+          command: |
+            echo $MY_ENV_VAR
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -45,3 +66,9 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - print_hello
+      - print_world:
+          requires:
+            - print_hello
+      - print_env_variable
+
