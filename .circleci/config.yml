@@ -40,17 +40,17 @@ jobs:
   
   print_hello:
     docker:
-      - image: cimg/python:3.8
+      - image: circleci/node:13.8.0
     steps:
       - run: echo hello
   print_world:
     docker:
-      - image: cimg/python:3.8
+      - image: circleci/node:13.8.0
     steps:
       - run: echo world
   print_env_variable:
     docker:
-      - image: cimg/python:3.8
+      - image: circleci/node:13.8.0
     steps:
       - run:
           name: "echo an env var that is part of our project"
