@@ -90,5 +90,5 @@ workflows:
           requires:
             - save_hello_world_output
       - reusable_code
-      - job_failures
+      #- job_failures
 
